@@ -1,0 +1,19 @@
+<section class="recommendations">
+       <div class="account-info">
+              <img class="profile-pic" src="https://picsum.photos/140" alt="profile image">
+              <h2>{{user.username}}</h2>
+       </div>
+       <div class="suggestion-list">
+              <h3>Suggestions for you</h3>
+              {% for suggestion in suggestions %}
+              <div class='suggested-item'>
+                     <img src={{suggestion.get('image_url')}} alt="suggestion image">
+                     <div class="suggested-info">
+                            <h4>{{suggestion.get('username')}}</h4>
+                            <p>suggested for you</p>
+                     </div>
+                     <button>follow</button>
+              </div>
+              {% endfor %}
+       </div>
+</section>  

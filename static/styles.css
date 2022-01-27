@@ -183,7 +183,7 @@ nav h4{
        padding: 0.7em;
 }
 
-.post-footer button, .suggested-item button, nav button{
+.post-footer button, .suggested-item button, nav button, .post-item button{
        background-color: transparent;
        border: none;
        color: #0aa8cc;

@@ -1,0 +1,52 @@
+<section class="posts">
+       {% for post in posts %}
+       <div class="post-item">
+              <div class="post-header">
+                     <h2>{{post.user.username}}</h2>
+                     <i class="fas fa-ellipsis-h"></i>
+              </div>
+              <img class="post-photo" src={{post.image_url}} alt="post image">
+              <!-- comments -->
+              <div class="comment-section">
+                     <div class='comment-section-header'>
+                            <!-- actions -->
+                            <div class="comment-section-1">
+                                   <i class="far fa-heart"></i>
+                                   <i class="far fa-comment"></i>
+                                   <i class="far fa-paper-plane"></i>
+                            </div>
+                            <i class="far fa-bookmark"></i>
+                     </div>
+                     <div class="comment-section-content">
+                            <h4>{{post.likes}} likes</h4>
+                            <!-- caption -->
+                            <div class="caption">
+                                   <h4>{{post.user.username}}</h4>
+                                   <p>{{post.title}}<p>
+                                   <button>more</button>
+                            </div>
+                            {% if post.comments[1] %}
+                            <button>View all {{post.comments|length}} comments</button>
+                            {% endif %}
+                            <!-- add comments -->
+                            <div class="comment-list">
+                                   <div class="comment-item">
+                                   {% if post.comments[0] %}
+                                          <h4>{{post.comments[0].user.username}}</h4>
+                                          <p>{{post.comments[0].text}}<p>
+                                   {% endif %}
+                                   </div>
+                            </div>
+                            <h4 class="days">{{post.display_time}}</h4>
+                     </div>
+              </div>
+              <div class="post-footer">
+                     <div class="comment-input">
+                            <i class="far fa-smile"></i>
+                            <textarea placeholder="Add a comment..." rows=1 cols="45" label="comment input"></textarea>
+                     </div>
+                     <button>Post</button>
+              </div>
+       </div>
+       {% endfor %}
+</section>
