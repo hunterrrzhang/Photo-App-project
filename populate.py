@@ -1,5 +1,4 @@
-from models import db, User, Post, Comment,  LikeComment, \
-    LikePost, Bookmark, Following, Story
+from models import db, User, Post, Comment,  LikeComment, LikePost, Bookmark, Following, Story
 import os
 import random
 from sqlalchemy import exc

@@ -1,6 +1,6 @@
 from flask import Response, request
 from flask_restful import Resource
-from models import User
+from models import User, Following, db
 from . import get_authorized_user_ids
 import json
 
@@ -11,7 +11,21 @@ class SuggestionsListEndpoint(Resource):
     
     def get(self):
         # Your code here:
-        return Response(json.dumps([]), mimetype="application/json", status=200)
+        following = Following.query.filter_by(user_id=self.current_user.id).all()
+        following_ids = [
+            item.following_id for item in following
+        ]
+        print(following_ids)
+        all_users = User.query.all()
+        result = []
+        i = 0
+        for user in all_users:
+            if i >= 7:
+                break
+            if (user.id not in following_ids) and (user.id != self.current_user.id):
+                i = i + 1
+                result.append(user.to_dict())        
+        return Response(json.dumps(result), mimetype="application/json", status=200)
 
 
 def initialize_routes(api):

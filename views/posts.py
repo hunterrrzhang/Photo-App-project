@@ -4,6 +4,8 @@ from models import Post, User, db
 from . import can_view_post, get_authorized_user_ids
 import json
 from sqlalchemy import and_
+from my_decorators import handle_db_insert_error, id_is_integer_or_400_error
+
 
 def get_path():
     return request.host_url + 'api/posts/'
@@ -18,7 +20,21 @@ class PostListEndpoint(Resource):
         # 1. No security implemented; 
         # 2. limit is hard coded (versus coming from the query parameter)
         # 3. No error checking
-        data = Post.query.limit(20).all()
+        
+        # get the limit of the query. If not specified set to default = 10
+        print('adsf')
+        try:
+            int(request.args.get('limit'))
+        except:
+            if request.args.get('limit') != None:
+                return Response(json.dumps({'message': 'Invalid query limit'}), mimetype="application/json", status=400)
+        query_limit = int(request.args.get('limit')) if request.args.get('limit') else 10
+        if query_limit < 0 or query_limit > 50:
+            return Response(json.dumps({'message': 'Invalid query limit'}), mimetype="application/json", status=400)
+        print(self.current_user)
+        auth_users_ids = get_authorized_user_ids(self.current_user)
+        data = Post.query.filter(Post.user_id.in_(auth_users_ids)).limit(query_limit).all()
+        # data = Post.query.limit(request.args.get('limit')).all()
 
         data = [
             item.to_dict() for item in data
@@ -26,9 +42,9 @@ class PostListEndpoint(Resource):
         return Response(json.dumps(data), mimetype="application/json", status=200)
 
 
-
+    @handle_db_insert_error
     def post(self):
-        body = request.get_json()
+        body = request.get_json()        
         image_url = body.get('image_url')
         caption = body.get('caption')
         alt_text = body.get('alt_text')
@@ -45,6 +61,7 @@ class PostDetailEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
         
+    @handle_db_insert_error
     def patch(self, id):
         post = Post.query.get(id)
 
@@ -62,8 +79,8 @@ class PostDetailEndpoint(Resource):
         db.session.commit()        
         return Response(json.dumps(post.to_dict()), mimetype="application/json", status=200)
     
+    @id_is_integer_or_400_error
     def delete(self, id):
-
         # a user can only delete their own post:
         post = Post.query.get(id)
         if not post or post.user_id != self.current_user.id:
@@ -77,6 +94,7 @@ class PostDetailEndpoint(Resource):
         }
         return Response(json.dumps(serialized_data), mimetype="application/json", status=200)
 
+    @id_is_integer_or_400_error
     def get(self, id):
         post = Post.query.get(id)
 
