@@ -81,7 +81,7 @@ class TestBookmarkListEndpoint(unittest.TestCase):
             'post_id': 999999,
             'text': 'Some comment text'
         }
-        response = requests.post(root_url + '/api/comments', json=body)
+        response = requests.post(root_url + '/api/bookmarks', json=body)
         # print(response.text)
         self.assertEqual(response.status_code, 404)
 
