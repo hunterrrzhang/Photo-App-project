@@ -88,6 +88,7 @@ class PostDetailEndpoint(Resource):
     @security.user_can_view_post
     def get(self, id):
         post = Post.query.get(id)
+        print(post)
         return Response(json.dumps(post.to_dict(user=self.current_user)), mimetype="application/json", status=200)
 
 def initialize_routes(api):

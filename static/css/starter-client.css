@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
 
 * {
     box-sizing: border-box;
@@ -11,14 +11,22 @@ body {
     background-color: #f2f2f2;
 }
 
-aside, main, nav {
+aside,
+main,
+nav {
     padding: 10px;
 }
 
-h1, h2, h3, h4 {
-    font-family: 'Comfortaa', cursive;
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Comfortaa", cursive;
 }
-a, a:visited, a:hover, a:link {
+a,
+a:visited,
+a:hover,
+a:link {
     /* font-weight: 600; */
     /* text-decoration: none; */
     color: rgb(44, 105, 155);
@@ -41,7 +49,7 @@ button.link.following {
 button.link.following.active {
     background-color: white;
     padding: 5px 10px !important;
-    border: solid 1px #CCC;
+    border: solid 1px #ccc;
     border-radius: 4px;
 }
 header {
@@ -59,7 +67,11 @@ nav {
     padding: 0px 3vw;
 }
 
-nav, nav ul, .card .header, .card .buttons, .card .add-comment {
+nav,
+nav ul,
+.card .header,
+.card .buttons,
+.card .add-comment {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -121,7 +133,7 @@ main {
 .stories p {
     margin-top: 4px;
     margin-bottom: 0px;
-    font-size: 0.80em;
+    font-size: 0.8em;
     color: #999;
     width: 66px;
     overflow: hidden;
@@ -141,7 +153,8 @@ main {
     width: 100%;
     height: auto;
 }
-.card .header, .card .info {
+.card .header,
+.card .info {
     padding: 10px;
     color: #444;
 }
@@ -154,21 +167,24 @@ main {
     margin-right: 4px;
 }
 
-.card  button.link {
+.card button.link {
     font-size: 1em;
 }
 
-.card .caption, .card .comments, .likes {
+.card .caption,
+.card .comments,
+.likes {
     padding: 0px 5px;
 }
-.card .caption p, .card .comments p {
+.card .caption p,
+.card .comments p {
     margin: 8px 0px 3px 0px;
     font-size: 0.9em;
 }
 .card .timestamp {
     color: #999;
     text-transform: uppercase;
-    font-size: 0.70em !important;
+    font-size: 0.7em !important;
     margin-bottom: 5px;
 }
 .card .add-comment {
@@ -180,7 +196,9 @@ main {
     width: 90%;
 }
 
-.card .add-comment input, .card .add-comment input:focus, .card .add-comment input:focus-visible {
+.card .add-comment input,
+.card .add-comment input:focus,
+.card .add-comment input:focus-visible {
     border-width: 0px;
     outline: none;
     font-size: 0.95em;
@@ -208,7 +226,8 @@ main {
     padding: 8px;
     width: 200px;
 }
-.suggestions section p, .suggestions section a {
+.suggestions section p,
+.suggestions section a {
     margin: 0px;
 }
 .suggestions section p {
@@ -257,67 +276,234 @@ aside header .pic {
         padding: 0px;
         align-items: center;
     }
-    .card, .stories {
+    .card,
+    .stories {
         width: 75vw;
         min-width: auto;
     }
 }
 
 @media (max-width: 700px) {
-    .card, .stories {
+    .card,
+    .stories {
         width: 90vw;
     }
 }
 
-
 /* suggestions */
-.recommendations{
+.recommendations {
     padding: 5px;
     /* width: 25%; */
     height: 100%;
-    position:fixed;
+    position: fixed;
     left: 65%;
     top: calc(34px + var(--desktop-nav-height));
 }
 
-.account-info{
+.account-info {
     display: flex;
     justify-content: flex-start;
-    align-items: center
+    align-items: center;
 }
 
-.account-info img{
-    margin-right: 30px
+.account-info img {
+    margin-right: 30px;
 }
 
-.suggestion-list{
+.suggestion-list {
     display: flex;
     flex-direction: column;
 }
 
-.suggested-item{
+.suggested-item {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin-top: 0.5em;
 }
 
-.suggested-info{
+.suggested-info {
     display: flex;
     flex-direction: column;
     /* justify-content: flex-start; */
     align-items: flex-start;
 }
 
-.recommendations .profile-pic{
+.recommendations .profile-pic {
     width: 5em;
     height: 5em;
     margin-right: 1.5em;
 }
 
-.recommendations img {
+.recommendations img, .comment-item-modal img {
     border-radius: 50%;
     width: 2em;
     height: 2em;
-    margin: 0.5em
+    margin: 0.5em;
+}
+
+/* Posts */
+
+/* Posts */
+.posts {
+}
+
+.post-item {
+    /* padding-bottom: 1em; */
+    outline: solid 1px #ccc;
+    outline-style: solid none none none;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-photo {
+    width: 100%;
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-section-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.caption,
+.comment-item,
+{
+    display: flex;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    outline: solid 1px #ccc;
+    outline-style: solid none none none;
+    margin: 0%;
+    padding: 0.7em;
+}
+
+.post-footer button,
+.suggested-item button,
+nav button,
+.post-item button {
+    background-color: transparent;
+    border: none;
+    color: #0aa8cc;
+}
+
+.comment-input {
+    display: flex;
+    justify-items: center;
+    /* width: 80%; */
+}
+
+.comment-section-content h4,
+.comment-section-content p {
+    margin: 3px;
+}
+
+/* .post-footer{
+       margin: 0.5em, 0 0.5em 0;
+} */
+
+.post-footer textarea,
+.post-footer textarea:focus {
+    /* height: 5px; */
+    margin-left: 0.5em;
+    resize: none;
+    width: 100%;
+    border: none;
+}
+
+.post-header,
+.comment-section {
+    margin: 0.5em 0.8em 0.3em 0.8em;
+}
+
+/* .fas{
+    color: red;
+} */
+
+/* modal */
+.modal-bg {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(50, 50, 50, 0.8);
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-bg button {
+    position: fixed;
+    top:20px;
+    right:20px;
+}
+
+.modal {
+    display: flex;
+    background-color: white;
+    width: 80vw;
+    height: 80vh;
+    /* border-radius: 0.5; */
+}
+
+.modal-bg .left-panel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-bg .left-panel img{
+    width: 100%;
+}
+
+.modal-bg .right-panel{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    overflow-y: auto;
+}
+
+.comment-item-modal{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 0.5em;
+}
+
+.comment-item-modal *{
+    margin: 0.5rem;
+}
+
+.comment-account-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem 0 1rem 0;
+}
+
+.comment-account-info img{
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    margin: 0.5em;
+}
+
+.comment-info-modal {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    align-items: flex-start;
 }
