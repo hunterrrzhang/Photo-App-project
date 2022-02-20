@@ -134,8 +134,8 @@ const post2Html = post => {
                 <div class="comment-input">
                         <i class="far fa-smile"></i>
                         <textarea name="myarea" placeholder="Add a comment..." rows=1 cols="45" label="comment input"></textarea>
+                        <input id="bb" type="button" data-post-id=${post.id} onclick="commentPost(event, this.form)" value="Post"></input>
                 </div>
-                <input type="button" data-post-id=${post.id} onclick="commentPost(event, this.form)">Post</input>
                 </form>
             </div>
         </div>
