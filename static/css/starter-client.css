@@ -454,8 +454,9 @@ nav button,
 .modal {
     display: flex;
     background-color: white;
-    width: 80vw;
+    width: 60vw;
     height: 80vh;
+    justify-content: space-between;
     /* border-radius: 0.5; */
 }
 
@@ -463,6 +464,7 @@ nav button,
     display: flex;
     justify-content: center;
     align-items: center;
+    width: auto;
 }
 
 .modal-bg .left-panel img{
@@ -472,7 +474,7 @@ nav button,
 .modal-bg .right-panel{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    max-width: 30%;
     overflow-y: auto;
 }
 
