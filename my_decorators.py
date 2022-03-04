@@ -178,18 +178,23 @@ def id_is_integer_or_400_error(func):
 def handle_db_insert_error(func):
     def wrapper(self, *args, **kwargs):
         try:
+            print("hiiiii")
             return func(self, *args, **kwargs)
         except:
-            import sys
-            db_message = str(sys.exc_info()[1]) # stores DB error message
-            print(db_message)                   # logs it to the console
-            message = 'Database Insert error. Make sure your post data is valid.'
-            post_data = request.get_json()
-            post_data['user_id'] = self.current_user.id
-            response_obj = {
-                'message': message, 
-                'db_message': db_message,
-                'post_data': post_data
-            }
-            return Response(json.dumps(response_obj), mimetype="application/json", status=400)
+            try:
+                print("hii")
+                import sys
+                db_message = str(sys.exc_info()[1]) # stores DB error message
+                print(db_message)                   # logs it to the console
+                message = 'Database Insert error. Make sure your post data is valid.'
+                post_data = request.get_json()
+                post_data['user_id'] = self.current_user.id
+                response_obj = {
+                    'message': message, 
+                    'db_message': db_message,
+                    'post_data': post_data
+                }
+                return Response(json.dumps({response_obj}), mimetype="application/json", status=400)
+            except:
+                return Response(json.dumps({}), mimetype="application/json", status=400)
     return wrapper

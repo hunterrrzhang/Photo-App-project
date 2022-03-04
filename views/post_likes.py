@@ -4,13 +4,17 @@ from models import LikePost, db, Post, like_post
 import json
 from . import can_view_post
 from my_decorators import handle_db_insert_error, id_is_integer_or_400_error
+import flask_jwt_extended
+
 
 class PostLikesListEndpoint(Resource):
-
+           
+    @flask_jwt_extended.jwt_required()
     def __init__(self, current_user):
         self.current_user = current_user
     
     @handle_db_insert_error
+    @flask_jwt_extended.jwt_required()
     def post(self, post_id):
         # Your code here
         # body = request.get_json()
@@ -34,9 +38,11 @@ class PostLikesListEndpoint(Resource):
 
 class PostLikesDetailEndpoint(Resource):
 
+    @flask_jwt_extended.jwt_required()
     def __init__(self, current_user):
         self.current_user = current_user
     
+    @flask_jwt_extended.jwt_required()
     def delete(self, post_id, id):
         # post = Post.query.get(post_id)
         try:
@@ -63,12 +69,12 @@ def initialize_routes(api):
         PostLikesListEndpoint, 
         '/api/posts/<post_id>/likes', 
         '/api/posts/<post_id>/likes/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
 
     api.add_resource(
         PostLikesDetailEndpoint, 
         '/api/posts/<post_id>/likes/<id>', 
         '/api/posts/<post_id>/likes/<id>/',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )

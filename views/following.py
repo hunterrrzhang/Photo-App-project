@@ -3,12 +3,15 @@ from flask_restful import Resource
 from models import Following, User, db
 import json
 from my_decorators import handle_db_insert_error, id_is_integer_or_400_error
+import flask_jwt_extended
+
 
 
 def get_path():
     return request.host_url + 'api/posts/'
 
 class FollowingListEndpoint(Resource):
+    @flask_jwt_extended.jwt_required()
     def __init__(self, current_user):
         self.current_user = current_user
     
@@ -38,6 +41,7 @@ class FollowingListEndpoint(Resource):
 
 
 class FollowingDetailEndpoint(Resource):
+    @flask_jwt_extended.jwt_required()
     def __init__(self, current_user):
         self.current_user = current_user
     
@@ -60,11 +64,11 @@ def initialize_routes(api):
         FollowingListEndpoint, 
         '/api/following', 
         '/api/following/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
     api.add_resource(
         FollowingDetailEndpoint, 
         '/api/following/<id>', 
         '/api/following/<id>/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
