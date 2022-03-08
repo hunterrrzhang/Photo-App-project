@@ -500,6 +500,7 @@ const commentPost = (e, form) => {
     fetch("/api/comments", {
             method: "POST",
             headers: {
+                'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': getCookie('csrf_access_token')
             },
             body: JSON.stringify(postData)
